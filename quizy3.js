@@ -1,6 +1,6 @@
 // 問題リスト定義
 // 配列の先頭が正しい回答として設定する
-var question_list = new Array();
+const question_list = new Array();
 question_list.push(['たかなわ', 'こうわ', 'たかわ']);
 question_list.push(['かめいど', 'かめと', 'かめど']);
 question_list.push(['こうじまち', 'おかとまち', 'かゆまち']);
@@ -12,7 +12,7 @@ question_list.push(['こうじまち', 'おかとまち', 'かゆまち']);
 function check(question_id, selection_id, valid_id) {
 
     // クリック無効化
-    var answerlists = document.getElementsByName('answerlist_' + question_id);
+    const answerlists = document.getElementsByName('answerlist_' + question_id);
     answerlists.forEach(answerlist => {
         answerlist.style.pointerEvents = 'none';
     });
@@ -20,14 +20,14 @@ function check(question_id, selection_id, valid_id) {
     // 選択項目のスタイル設定処理
     // 選択された選択肢の背景色をオレンジ、正解の選択肢を水色に設定
     // 選択された選択肢が正解だった場合は水色で上書きする
-    var selectiontext = document.getElementById('answerlist_' + question_id + '_' + selection_id);
-    var validtext = document.getElementById('answerlist_' + question_id + '_' + valid_id);
+    const selectiontext = document.getElementById('answerlist_' + question_id + '_' + selection_id);
+    const validtext = document.getElementById('answerlist_' + question_id + '_' + valid_id);
     selectiontext.className = 'answer_invalid';
     validtext.className = 'answer_valid';
 
     // 正解・不正解の表示設定処理
-    var answerbox = document.getElementById('answerbox_' + question_id);
-    var answertext = document.getElementById('answertext_' + question_id);
+    const answerbox = document.getElementById('answerbox_' + question_id);
+    const answertext = document.getElementById('answertext_' + question_id);
     if (selection_id == valid_id) {
         answertext.className = 'answerbox_valid';
         answertext.innerText = '正解！';
@@ -43,7 +43,7 @@ function check(question_id, selection_id, valid_id) {
 // selection_list：回答の選択肢配列を受け取る
 // valid_id：正解番号、正解の選択肢の番号を受け取る。先頭の選択肢が正解の場合は1となる
 function createquestion(question_id, selection_list, valid_id) {
-    var contents = `<div class="quiz">`
+    let contents = `<div class="quiz">`
         + `    <h1>${question_id}. この地名はなんて読む？</h1>`
         + `    <img src="img/${question_id}.png">`
         + `    <ul>`;
@@ -72,9 +72,9 @@ function createhtml() {
         answer = question[0];
 
         // 配列をランダムにソート（Fisher-Yates shuffle）
-        for (var i = question.length - 1; i > 0; i--) {
-            var r = Math.floor(Math.random() * (i + 1));
-            var tmp = question[i];
+        for (let i = question.length - 1; i > 0; i--) {
+            const r = Math.floor(Math.random() * (i + 1));
+            const tmp = question[i];
             question[i] = question[r];
             question[r] = tmp;
         }
